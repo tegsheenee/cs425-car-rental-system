@@ -1,1 +1,37 @@
 .DS_Store
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+backend/.env
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Build output
+dist/
+backend/dist/
+frontend/dist/
+
+# macOS
+.DS_Store
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+backend/.env
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Build output
+dist/
+backend/dist/
+frontend/dist/
+
+# macOS
+.DS_Store
