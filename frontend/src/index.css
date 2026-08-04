@@ -1,0 +1,768 @@
+/* ===========================
+   Global Styles
+=========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    transition:
+            background-color 0.2s ease,
+            transform 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #1976d2;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+h3 {
+    color: #333;
+}
+
+p {
+    line-height: 1.5;
+}
+
+main {
+    width: 100%;
+}
+
+/* ===========================
+   Navigation Bar
+=========================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 30px;
+    background: #0d47a1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.navbar-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.nav-link {
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.nav-link.active {
+    color: #0d47a1;
+    background: white;
+}
+
+/* ===========================
+   Home Page
+=========================== */
+
+.home-page {
+    display: grid;
+    gap: 30px;
+}
+
+.hero-section {
+    min-height: 330px;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #1976d2, #0d47a1);
+    color: white;
+    border-radius: 14px;
+}
+
+.hero-section h1 {
+    max-width: 700px;
+    margin-bottom: 18px;
+    color: white;
+    font-size: 42px;
+}
+
+.hero-label {
+    margin-bottom: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.hero-text {
+    max-width: 700px;
+    margin-bottom: 24px;
+    font-size: 18px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.primary-link,
+.secondary-link {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.primary-link {
+    color: #0d47a1;
+    background: white;
+}
+
+.secondary-link {
+    color: white;
+    border: 1px solid white;
+}
+
+.primary-link:hover,
+.secondary-link:hover {
+    opacity: 0.9;
+}
+
+.home-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 22px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h2 {
+    margin-bottom: 12px;
+    color: #1976d2;
+}
+
+.feature-card p {
+    margin-bottom: 14px;
+}
+
+.feature-card a {
+    color: #1976d2;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.feature-card a:hover {
+    text-decoration: underline;
+}
+
+/* ===========================
+   Search Filters
+=========================== */
+
+.filter-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-panel input,
+.filter-panel select,
+.filter-panel button {
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.filter-panel input,
+.filter-panel select {
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.filter-panel button {
+    border: none;
+    background: #1976d2;
+    color: white;
+    cursor: pointer;
+}
+
+.filter-panel button:hover {
+    background: #145ea8;
+}
+
+/* ===========================
+   Car Grid
+=========================== */
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+}
+
+/* ===========================
+   Car Cards
+=========================== */
+
+.car-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 100%;
+    padding: 22px;
+    background: white;
+    border: 1px solid #e4e7eb;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.car-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.car-card h3 {
+    margin: 4px 0;
+    color: #0d47a1;
+    font-size: 22px;
+}
+
+.car-category {
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.car-year {
+    color: #6b7280;
+}
+
+.price-badge {
+    min-width: 92px;
+    padding: 10px;
+    text-align: center;
+    background: #eaf2ff;
+    border-radius: 10px;
+    color: #0d47a1;
+}
+
+.price-badge strong {
+    display: block;
+    font-size: 20px;
+}
+
+.price-badge span {
+    font-size: 12px;
+}
+
+.car-details {
+    display: grid;
+    gap: 10px;
+}
+
+.car-details p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.availability-row {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.availability-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.availability-badge.available {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.availability-badge.unavailable {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.reserve-button {
+    width: 100%;
+    margin-top: auto;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 7px;
+    background: #1976d2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.reserve-button:hover:not(:disabled) {
+    background: #145ea8;
+}
+
+.reserve-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* ===========================
+   Recommendation Score
+=========================== */
+
+.recommendation-score {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: #fff7ed;
+    color: #9a3412;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* ===========================
+   Reservation Form
+=========================== */
+
+.reservation-form {
+    display: grid;
+    gap: 12px;
+    max-width: 500px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-form input,
+.reservation-form select,
+.reservation-form button {
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.reservation-form input,
+.reservation-form select {
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.reservation-form label {
+    display: grid;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.reservation-form button {
+    border: none;
+    background: #1976d2;
+    color: white;
+    cursor: pointer;
+}
+
+.reservation-form button:hover {
+    background: #145ea8;
+}
+
+.reservation-list {
+    display: grid;
+    gap: 15px;
+}
+
+.reservation-card {
+    padding: 18px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-card h3 {
+    margin-bottom: 10px;
+    color: #0d47a1;
+}
+
+.reservation-card p {
+    margin: 6px 0;
+}
+
+.reservation-card button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background: crimson;
+    color: white;
+    cursor: pointer;
+}
+
+.reservation-card button:hover {
+    background: #b01030;
+}
+
+/* ===========================
+   Admin Page
+=========================== */
+
+.admin-form {
+    display: grid;
+    gap: 12px;
+    max-width: 550px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form button {
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.admin-form input,
+.admin-form select {
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.admin-form button {
+    border: none;
+    background: #1976d2;
+    color: white;
+    cursor: pointer;
+}
+
+.admin-form button:hover {
+    background: #145ea8;
+}
+
+.admin-form-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.availability-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-car-list {
+    display: grid;
+    gap: 15px;
+}
+
+.admin-car-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-car-row p {
+    margin-top: 5px;
+    color: #666;
+}
+
+.admin-row-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-row-actions button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.admin-row-actions button:first-child {
+    background: #1976d2;
+}
+
+.admin-row-actions button:first-child:hover {
+    background: #145ea8;
+}
+
+.admin-row-actions button:last-child {
+    background: crimson;
+}
+
+.admin-row-actions button:last-child:hover {
+    background: #b01030;
+}
+
+/* ===========================
+   Utility Messages
+=========================== */
+
+.success-message {
+    color: #166534;
+    font-weight: bold;
+}
+
+.error-message {
+    color: #b91c1c;
+    font-weight: bold;
+}
+
+/* ===========================
+   Responsive Design
+=========================== */
+
+@media (max-width: 850px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links {
+        width: 100%;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: auto;
+        padding: 28px 20px;
+    }
+
+    .hero-section h1 {
+        font-size: 32px;
+    }
+
+    .filter-panel {
+        flex-direction: column;
+    }
+
+    .filter-panel input,
+    .filter-panel select,
+    .filter-panel button {
+        width: 100%;
+    }
+
+    .car-card-header {
+        flex-direction: column;
+    }
+
+    .price-badge {
+        width: 100%;
+    }
+
+    .admin-car-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-row-actions {
+        width: 100%;
+    }
+
+    .admin-row-actions button {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 14px 18px;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+    }
+
+    .nav-link {
+        width: 100%;
+    }
+
+    .hero-section h1 {
+        font-size: 28px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .primary-link,
+    .secondary-link {
+        width: 100%;
+        text-align: center;
+    }
+}
+.app-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    flex: 1;
+    padding: 24px 30px;
+}
+
+.footer {
+    margin-top: 40px;
+    padding: 24px 30px;
+    text-align: center;
+    background: #0d47a1;
+    color: white;
+}
+
+.footer p {
+    margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding: 20px 16px;
+    }
+}
+.car-image {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background: #f5f5f5;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+.alert {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.alert-success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+.alert-error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+.loading-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0;
+    color: #555;
+    font-weight: 600;
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #dbeafe;
+    border-top-color: #1976d2;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.empty-state {
+    margin-top: 20px;
+    padding: 24px;
+    text-align: center;
+    background: white;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    color: #475569;
+}
+
+.empty-state h3 {
+    margin-bottom: 8px;
+    color: #0d47a1;
+}
+
+.empty-state p {
+    margin: 0;
+}
