@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+</head>
+<body>
+
+<h1>Student Registration</h1>
+
+<a th:href="@{/eregistrar/students}">
+    Back to Students
+</a>
+
+<br><br>
+
+<form th:action="@{/eregistrar/students/save}"
+      th:object="${student}"
+      method="post">
+
+    <input type="hidden" th:field="*{studentId}">
+
+    <label>Student Number:</label>
+    <input type="text"
+           th:field="*{studentNumber}"
+           required>
+
+    <br><br>
+
+    <label>First Name:</label>
+    <input type="text"
+           th:field="*{firstName}"
+           required>
+
+    <br><br>
+
+    <label>Middle Name:</label>
+    <input type="text"
+           th:field="*{middleName}">
+
+    <br><br>
+
+    <label>Last Name:</label>
+    <input type="text"
+           th:field="*{lastName}"
+           required>
+
+    <br><br>
+
+    <label>CGPA:</label>
+    <input type="number"
+           step="0.01"
+           th:field="*{cgpa}">
+
+    <br><br>
+
+    <label>Enrollment Date:</label>
+    <input type="date"
+           th:field="*{enrollmentDate}"
+           required>
+
+    <br><br>
+
+    <label>International Student:</label>
+
+    <select th:field="*{isInternational}" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Save Student
+    </button>
+
+</form>
+
+</body>
+</html>
