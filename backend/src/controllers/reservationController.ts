@@ -1,157 +1,104 @@
-import { Request, Response } from "express";
-import * as service from "../services/reservationService";
+import { Response } from "express";
+import {
+    AuthenticatedRequest,
+} from "../middleware/authMiddleware";
 
-export async function createReservation(
-    req: Request,
+import * as reservationService
+    from "../services/reservationService";
+
+export async function getReservations(
+    req: AuthenticatedRequest,
     res: Response
 ) {
     try {
-        const {
-            user_id,
-            car_id,
-            start_date,
-            end_date,
-        } = req.body;
+        if (!req.user) {
+            return res.status(401).json({
+                message: "Authentication required",
+            });
+        }
 
-        if (
-            !user_id ||
-            !car_id ||
-            !start_date ||
-            !end_date
-        ) {
-            return res.status(400).json({
-                message:
-                    "user_id, car_id, start_date, and end_date are required",
+        let reservations;
+
+        if (req.user.role === "ADMIN") {
+            reservations =
+                await reservationService.getAllReservations();
+        } else {
+            reservations =
+                await reservationService.getReservationsByUserId(
+                    req.user.userId
+                );
+        }
+
+        return res.status(200).json(reservations);
+    } catch (error) {
+        console.error("Failed to load reservations:", error);
+
+        return res.status(500).json({
+            message: "Unable to load reservations",
+        });
+    }
+}
+
+export async function createReservation(
+    req: AuthenticatedRequest,
+    res: Response
+) {
+    try {
+        if (!req.user) {
+            return res.status(401).json({
+                message: "Authentication required",
             });
         }
 
         const reservation =
-            await service.createReservation({
-                user_id: Number(user_id),
-                car_id: Number(car_id),
-                start_date,
-                end_date,
+            await reservationService.createReservation({
+                user_id: req.user.userId,
+                car_id: Number(req.body.car_id),
+                start_date: req.body.start_date,
+                end_date: req.body.end_date,
             });
 
         return res.status(201).json(reservation);
     } catch (error) {
-        console.error(
-            "Failed to create reservation:",
-            error
-        );
+        console.error("Failed to create reservation:", error);
 
-        const message =
-            error instanceof Error
-                ? error.message
-                : "Unable to create reservation";
-
-        if (
-            message.includes("not available") ||
-            message.includes("Invalid") ||
-            message.includes("earlier")
-        ) {
-            return res.status(400).json({
-                message,
-            });
-        }
-
-        return res.status(500).json({
-            message: "Unable to create reservation",
-        });
-    }
-}
-export async function getReservations(
-    _req: Request,
-    res: Response
-) {
-    try {
-        const reservations =
-            await service.getAllReservations();
-
-        return res.json(reservations);
-    } catch (error) {
-        console.error(
-            "Failed to retrieve reservations:",
-            error
-        );
-
-        return res.status(500).json({
-            message: "Unable to retrieve reservations",
+        return res.status(400).json({
+            message:
+                error instanceof Error
+                    ? error.message
+                    : "Unable to create reservation",
         });
     }
 }
 
-export async function getReservationById(
-    req: Request,
-    res: Response
-) {
-    try {
-        const reservationId = Number(req.params.id);
-
-        if (Number.isNaN(reservationId)) {
-            return res.status(400).json({
-                message: "Invalid reservation ID",
-            });
-        }
-
-        const reservation =
-            await service.getReservationById(
-                reservationId
-            );
-
-        if (!reservation) {
-            return res.status(404).json({
-                message: "Reservation not found",
-            });
-        }
-
-        return res.json(reservation);
-    } catch (error) {
-        console.error(
-            "Failed to retrieve reservation:",
-            error
-        );
-
-        return res.status(500).json({
-            message: "Unable to retrieve reservation",
-        });
-    }
-}
 export async function cancelReservation(
-    req: Request,
+    req: AuthenticatedRequest,
     res: Response
 ) {
     try {
+        if (!req.user) {
+            return res.status(401).json({
+                message: "Authentication required",
+            });
+        }
+
         const reservationId = Number(req.params.id);
 
-        if (Number.isNaN(reservationId)) {
-            return res.status(400).json({
-                message: "Invalid reservation ID",
-            });
-        }
-
-        const reservation =
-            await service.cancelReservation(reservationId);
-
-        if (!reservation) {
-            return res.status(404).json({
-                message:
-                    "Reservation not found or already cancelled",
-            });
-        }
-
-        return res.json({
-            message: "Reservation cancelled successfully",
-            reservation,
-        });
-    } catch (error) {
-        console.error(
-            "Failed to cancel reservation:",
-            error
+        await reservationService.cancelReservation(
+            reservationId,
+            req.user.userId,
+            req.user.role
         );
 
-        return res.status(500).json({
-            message: "Unable to cancel reservation",
+        return res.status(200).json({
+            message: "Reservation cancelled successfully",
+        });
+    } catch (error) {
+        return res.status(403).json({
+            message:
+                error instanceof Error
+                    ? error.message
+                    : "Unable to cancel reservation",
         });
     }
 }

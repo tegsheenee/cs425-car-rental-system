@@ -46,8 +46,32 @@ export async function getReservationById(
 ) {
     return repository.getReservationById(reservationId);
 }
-export async function cancelReservation(
-    reservationId: number
+
+export async function getReservationsByUserId(
+    userId: number
 ) {
+    return repository.getReservationsByUserId(userId);
+}
+export async function cancelReservation(
+    reservationId: number,
+    userId: number,
+    role: string
+) {
+    const reservation =
+        await repository.getReservationById(reservationId);
+
+    if (!reservation) {
+        throw new Error("Reservation not found");
+    }
+
+    if (
+        role !== "ADMIN" &&
+        reservation.user_id !== userId
+    ) {
+        throw new Error(
+            "You are not allowed to cancel this reservation"
+        );
+    }
+
     return repository.cancelReservation(reservationId);
 }

@@ -1,11 +1,28 @@
 import { Router } from "express";
-import * as controller from "../controllers/reservationController";
+import {
+    createReservation,
+    getReservations,
+    cancelReservation,
+} from "../controllers/reservationController";
+
+import {
+    authenticateToken,
+} from "../middleware/authMiddleware";
 
 const router = Router();
 
-router.get("/", controller.getReservations);
-router.get("/:id", controller.getReservationById);
-router.post("/", controller.createReservation);
-router.delete("/:id", controller.cancelReservation);
+router.get("/", authenticateToken, getReservations);
+
+router.post(
+    "/",
+    authenticateToken,
+    createReservation
+);
+
+router.delete(
+    "/:id",
+    authenticateToken,
+    cancelReservation
+);
 
 export default router;

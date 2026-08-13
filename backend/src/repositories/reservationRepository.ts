@@ -69,27 +69,19 @@ export async function getAllReservations(): Promise<Reservation[]> {
 
 export async function getReservationById(
     reservationId: number
-): Promise<Reservation | null> {
-    const result = await pool.query<Reservation>(
+) {
+    const result = await pool.query(
         `
-    SELECT
-      r.*,
-      u.first_name,
-      u.last_name,
-      c.brand,
-      c.model
-    FROM reservations r
-    JOIN users u
-      ON r.user_id = u.user_id
-    JOIN cars c
-      ON r.car_id = c.car_id
-    WHERE r.reservation_id = $1
+      SELECT *
+      FROM reservations
+      WHERE reservation_id = $1
     `,
         [reservationId]
     );
 
     return result.rows[0] ?? null;
 }
+
 export async function cancelReservation(
     reservationId: number
 ): Promise<Reservation | null> {
@@ -105,4 +97,28 @@ export async function cancelReservation(
     );
 
     return result.rows[0] ?? null;
+}
+export async function getReservationsByUserId(
+    userId: number
+) {
+    const result = await pool.query(
+        `
+      SELECT
+        r.*,
+        u.first_name,
+        u.last_name,
+        c.brand,
+        c.model
+      FROM reservations r
+      JOIN users u
+        ON r.user_id = u.user_id
+      JOIN cars c
+        ON r.car_id = c.car_id
+      WHERE r.user_id = $1
+      ORDER BY r.reservation_id DESC
+    `,
+        [userId]
+    );
+
+    return result.rows;
 }
