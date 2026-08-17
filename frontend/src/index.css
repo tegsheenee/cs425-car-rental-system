@@ -766,3 +766,44 @@ main {
 .empty-state p {
     margin: 0;
 }
+.auth-form {
+    display: grid;
+    gap: 14px;
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form input,
+.auth-form button {
+    padding: 11px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.auth-form input {
+    border: 1px solid #ccc;
+}
+
+.auth-form button {
+    border: none;
+    background: #1976d2;
+    color: white;
+    cursor: pointer;
+}
+.logout-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+}

@@ -96,8 +96,14 @@ function Reservations() {
         }
 
         try {
+            const userData = localStorage.getItem("user");
+
+            if (!userData) {
+                setMessage("Please log in before creating a reservation.");
+                return;
+            }
+
             await api.post("/reservations", {
-                user_id: 1,
                 car_id: Number(carId),
                 start_date: startDate,
                 end_date: endDate,
